@@ -3,23 +3,16 @@ require 'pry'
 class Song
   attr_accessor :name
   attr_reader :artist
+  include Memorable::InstanceMethods
   include Paramable
-  extend Memorable
+  extend Memorable::ClassMethods
   extend Findable
 
   @@songs = []
 
-  def initialize
-    @@songs << self
-  end
-
   def artist=(artist)
     @artist = artist
   end
-
-  # def to_param
-  #   name.downcase.gsub(' ', '-')
-  # end
 
   def self.all
     @@songs
